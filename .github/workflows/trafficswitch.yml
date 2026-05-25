@@ -55,6 +55,15 @@ jobs:
     - name: Configure Kubectl
       uses: azure/setup-kubectl@v4
 
+    - name: Configure kubeconfig
+      run: |
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+
+    - name: Check cluster
+      run: |
+        kubectl get nodes
+        
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f Kubernetes/deployment.yaml

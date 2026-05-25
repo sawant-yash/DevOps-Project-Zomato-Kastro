@@ -49,13 +49,13 @@ jobs:
 
     - name: Replace Version in Deployment File
       run: |
-        sed -i "s/VERSION/$VERSION/g" k8s/deployment.yaml
-        sed -i "s/yash5030/${{ secrets.DOCKERHUB_USERNAME }}/g" k8s/deployment.yaml
+        sed -i "s/VERSION/$VERSION/g" Kubernetes/deployment.yaml
+        sed -i "s/yash5030/${{ secrets.DOCKERHUB_USERNAME }}/g" Kubernetes/deployment.yaml
 
     - name: Configure Kubectl
       uses: azure/setup-kubectl@v4
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f k8s/deployment.yaml
-        kubectl apply -f k8s/service.yaml
+        kubectl apply -f Kubernetes/deployment.yaml
+        kubectl apply -f Kubernetes/service.yaml

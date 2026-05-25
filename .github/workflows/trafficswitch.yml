@@ -52,8 +52,8 @@ jobs:
         sed -i "s/VERSION/$VERSION/g" Kubernetes/deployment.yaml
         sed -i "s/yash5030/${{ secrets.DOCKERHUB_USERNAME }}/g" Kubernetes/deployment.yaml
 
-    - name: Configure Kubectl
-      uses: azure/setup-kubectl@v4
+    - name: Create Kind Cluster
+      uses: helm/kind-action@v1
 
     - name: Configure kubeconfig
       run: |
